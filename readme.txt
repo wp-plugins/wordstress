@@ -8,11 +8,11 @@ Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-wordstress is a whitebox security scanner for wordpress powered websites. 
+wordstress is a whitebox security scanner for wordpress powered websites.
 
 == Description ==
 
-[wordstress](https://rubygems.org/gems/wordstress) is a wordpress whitebox
+[wordstress](https://rubygems.org/gems/wordstress) is a whitebox
 security scanner for wordpress powered websites.
 
 Site owners don't want to spend time in reading complex blackbox security scan
