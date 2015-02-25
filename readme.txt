@@ -37,9 +37,13 @@ really need your attention.
 
 Of course you may argue that giving on the Internet a place where all your
 website third parties plugins and themes name with version is not a wise
-decision. This is correct, that's why wordstress plugin allows you to assign to
-your site a random alias that's impossible to link to your site for anyone else
-other than you.
+decision. This is correct, that's why wordstress plugin creates a secure access
+key the scanner must use in order to access /wordstress virtual page.
+
+People without the correct key can't access your website information. The key
+is unique per server and created with hashing functions so to be resilient to
+guessing account. Bruteforcing the key will lead to an unsuccessful attempt,
+and you'll be busted. For sure.
 
 You must pass the correct key value to wordstress ruby gem in order to perform
 the whitebox scan. If you provide the wrong key or you won't provide a key at
