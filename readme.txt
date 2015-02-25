@@ -37,8 +37,9 @@ really need your attention.
 
 Of course you may argue that giving on the Internet a place where all your
 website third parties plugins and themes name with version is not a wise
-decision. This is correct, that's why wordstress plugin has a place in the
-configuration pane where you can save a randomic generated key.
+decision. This is correct, that's why wordstress plugin allows you to assign to
+your site a random alias that's impossible to link to your site for anyone else
+other than you.
 
 You must pass the correct key value to wordstress ruby gem in order to perform
 the whitebox scan. If you provide the wrong key or you won't provide a key at
