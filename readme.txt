@@ -25,7 +25,7 @@ version 3.2.1 version that **is not vulnerable**.
 
 A blackbox security scanner will try to enumerate installed plugins but it
 can't tell the exact installed version. So, using a blackbox approach you'll
-have a suspectious SQL Injection vulnerability you must validate and mitigate.
+have a alleged SQL Injection vulnerability you must validate and mitigate.
 Unfortunately, you will lose precious time to spot a false positive since your
 plugin is safe.
 
