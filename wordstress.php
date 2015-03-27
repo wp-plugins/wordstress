@@ -96,7 +96,7 @@ if (!class_exists('WordstressPage')) {
 }
 
 function endsWith($haystack, $needle) {
-  return $needle === "" || strpos($haystack, $needle, strlen($haystack) - strlen($needle)) !== FALSE;
+  return strlen($haystack) && ($len=strlen($haystack)-strlen($needle)) >= 0 && strpos($haystack, $needle, $len) !== FALSE;
 }
 function wordstress_init_external(){
   if ( ! function_exists( 'get_plugins' ) ) {
