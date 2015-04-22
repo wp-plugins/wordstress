@@ -1,9 +1,9 @@
 === Wordstress ===
 Contributors: thesp0nge
-Tags: security, penetration test, wapt, security assessment, security scan
+Tags: security, penetration test, wapt, security assessment, security scan, wordpress security, xss, sql injection
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6AYKJFX87UFGW
 Requires at least: 3.0.0
-Tested up to: 4.1.0
+Tested up to: 4.2.0
 Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -123,6 +123,13 @@ Without the key, the virtual page shows empty content. No information is given
 without the correct key.
 
 == Changelog ==
+
+= 0.7 =
+* Change in internal endsWith routine to avoid warning about offset not present
+  in strpos() call.
+* Improved layout of plugin settings. A lot of people were confused about the
+  current key and the newly generated one, and a lot of them overwrites the
+  current value by mistake. Now instructions should be more readable.
 
 = 0.6 =
 * First public version

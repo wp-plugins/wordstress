@@ -3,9 +3,9 @@
  * Plugin Name: wordstress
  * Plugin URI: https://wordpress.org/plugins/wordstress
  * Description: wordstress is a whitebox security scanner for wordpress powered websites. This plugin introduces a wordstress virtual post with all installed plugins and themes and their version number. This information will be used by the <a href="https://rubygems.org/gems/wordstress">wordstress security scanner</a> to give you a false positives free result. <strong>For security reasons</strong> the page needs a key passed in the query string in order to render the plugin and themes list. A blank page is shown if no key is provided or if it mismatches the one saved in wordstress plugin preference pane. To get started: 1) Click the "Activate" link to the left of this description, 2) Go into Settings->Wordstress admin page, 3) A new key is automagically generated, to increase entropy you may want to reload the page a couple of times, 4) When you're comfortable with the generated key, press the "Save Changes" button. The virtual page is now available calling http://youblogurl/wordstress?worstress-key=the_key, 5) Install worstress rubygem on your scanning machine (you need a working ruby environment to do this): gem install wordstress, 6) From a command line, use wordstress security scanner this way: worstress -u http://yourblogurl/wordstress -k the_key, 7) Enjoy results
- * Version: 0.6.0
- * Author: Paolo Perego - paolo@codiceinsicuro.it
- * Author URI: https://codiceinsicuro.it
+ * Version: 0.7.0
+ * Author: Paolo Perego
+ * Author URI: http://wordstress.org
  * License: GPL2
  */
 
@@ -96,7 +96,7 @@ if (!class_exists('WordstressPage')) {
 }
 
 function endsWith($haystack, $needle) {
-  return $needle === "" || strpos($haystack, $needle, strlen($haystack) - strlen($needle)) !== FALSE;
+  return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }
 function wordstress_init_external(){
   if ( ! function_exists( 'get_plugins' ) ) {
@@ -181,22 +181,31 @@ function wordstress_options() {
   <p>Wordstress approach is to have in input a list of installed plugins and themes with their version number and using <a href="http://wpvulndb.com/">this great public wordpress vulnerability database</a> to give <strong>only</strong> the vulnerabilities your website really has.</p>
   <p>This plugin will introduce a wordstress virtual page you can call at http://yourblogurl/wordstress. In this page there will be stored wordpress, plugins and themes names with version numbe.r</p>
   <p>In order to use <a href="https://rubygems.org/gems/wordstress">wordstress</a> gem, you must have a key. We don't want bad guys to have information on what is installed on this website.</p>
-  <p>The key is, hopefully, generated in a secure way in order to minimize guessing attempts. If you don't like the automatically generated key, just reload this page.</p>
+  <p>The key is generated in a secure way in order to make impossible guessing attempts.</p>
 <?php
   if (get_option('wordstress-api-key')) {
-    echo '<p>Current wordstress key is '.esc_attr(get_option('wordstress-api-key')).'</p>';
+?>
+    <table class="form-table">
+      <tr valign="top">
+      <th scope="row">Current Wordstress Key:</th>
+       <td><p style="font-family: monospace;"><?php echo esc_attr(get_option('wordstress-api-key'));?></p></td>
+      </tr>
+    </table>
+<?php
   } else
     echo '<p>You don\'t have a key defined. Save the one generated below.</p>';
   ?>
+  <hr />
+  <p>If you want to change your current key, we generated a fresh new key. If you want to overwrite your old key, please press 'Save Changes' button and you can start using your new wordstress key.</p>
   <form method="post" action="options.php">
     <?php settings_fields( 'wordstress-settings-group' ); ?>
     <?php do_settings_sections( 'wordstress-settings-group' ); ?>
-   <table class="form-table">
+    <table class="form-table">
       <tr valign="top">
-      <th scope="row">New API Key:</th>
-       <td> <input type="text"  name="wordstress-api-key" id="wordstress-api-key" value="<?php echo create_key();?>" size="40"></input></td>
-</tr>
-</table>
+      <th scope="row">New Wordstress Key:</th>
+       <td> <input type="text"  name="wordstress-api-key" id="wordstress-api-key" value="<?php echo create_key();?>" size="42" style="font-family: monospace;"></input></td>
+      </tr>
+    </table>
     <?php submit_button(); ?>
   </form>
   </div>
